@@ -14,7 +14,7 @@ public class CloseMenu : MonoBehaviour
         button.onClick.AddListener(SwitchState);
     }
 
-    private void SwitchState()
+    public void SwitchState()
     {
         if (downMenu.activeSelf)
         {

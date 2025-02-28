@@ -3006,6 +3006,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapCam
       objectReference: {fileID: 0}
+    - target: {fileID: 3830826563342310055, guid: 08aa7b4b8ecb74544a3806a7ea83849b, type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 145221078}
     - target: {fileID: 4289159312223039710, guid: 08aa7b4b8ecb74544a3806a7ea83849b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.1669
