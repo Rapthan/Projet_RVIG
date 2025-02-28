@@ -10,6 +10,7 @@ public class SwitchCamera : MonoBehaviour
     [SerializeField] private List<Camera> cameras;
     private int _currentCamNbr;*/
     
+    [SerializeField] private GameObject display;
     private Camera _currentCam;
     public static SwitchCamera Instance;
 
@@ -18,7 +19,7 @@ public class SwitchCamera : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(this);
         }
         else Destroy(this);
         
@@ -35,10 +36,14 @@ public class SwitchCamera : MonoBehaviour
 
     public void ChangeCamera(Camera newCamera)
     {
-        print(_currentCam);
-        print(newCamera);
+        if (!display.activeSelf) display.SetActive(true);
         if (_currentCam) _currentCam.gameObject.SetActive(false);
         _currentCam = newCamera;
         _currentCam.gameObject.SetActive(true);
+    }
+
+    public void CloseCameras()
+    {
+        display.SetActive(false);
     }
 }
