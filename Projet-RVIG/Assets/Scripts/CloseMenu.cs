@@ -8,8 +8,11 @@ public class CloseMenu : MonoBehaviour
     private bool _displayActive;
     [SerializeField] private ManualPushButton button;
 
+    private BatteryManager _batteryManager;
+
     private void Start()
     {
+        _batteryManager = BatteryManager.Instance;
         _displayActive = upDisplay.activeSelf;
         button.trigger.AddListener(SwitchState);
     }
@@ -21,11 +24,16 @@ public class CloseMenu : MonoBehaviour
             _displayActive = upDisplay.activeSelf;
             upDisplay.SetActive(false);
             downMenu.SetActive(false);
+            _batteryManager.OnDisactivation();
         }
         else
         {
             downMenu.SetActive(true);
-            upDisplay.SetActive(_displayActive);
+            if (_displayActive)
+            {
+                upDisplay.SetActive(true);
+                _batteryManager.OnActivation();
+            }
         }
     }
 }

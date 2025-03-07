@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -13,6 +14,8 @@ public class SwitchCamera : MonoBehaviour
     private Camera _currentCam;
     public static SwitchCamera Instance;
 
+    private BatteryManager _batteryManager;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -20,18 +23,16 @@ public class SwitchCamera : MonoBehaviour
             Instance = this;
             //DontDestroyOnLoad(this);
         }
-        else Destroy(this);
+        else if (Instance != this) Destroy(this);
         
         /*button.onClick.AddListener(ChangeCameras);
         _currentCamNbr = 0;*/
     }
 
-    /*private void ChangeCameras()
+    private void Start()
     {
-        cameras[_currentCamNbr].gameObject.SetActive(false);
-        _currentCamNbr = (_currentCamNbr == cameras.Count - 1) ? 0 : _currentCamNbr + 1;
-        cameras[_currentCamNbr].gameObject.SetActive(true);
-    }*/
+        _batteryManager = BatteryManager.Instance;
+    }
 
     public void ChangeCamera(Camera newCamera)
     {
@@ -39,10 +40,14 @@ public class SwitchCamera : MonoBehaviour
         if (_currentCam) _currentCam.gameObject.SetActive(false);
         _currentCam = newCamera;
         _currentCam.gameObject.SetActive(true);
+        
+        _batteryManager.OnActivation();
     }
 
     public void CloseCameras()
     {
         display.SetActive(false);
+        
+        _batteryManager.OnDisactivation();
     }
 }

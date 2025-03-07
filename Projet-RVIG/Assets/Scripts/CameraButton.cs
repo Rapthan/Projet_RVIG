@@ -5,12 +5,12 @@ using UnityEngine.UI;
 public class CameraButton : MonoBehaviour
 {
     public Camera associatedCamera;
-    [SerializeField] private Button button;
+    [SerializeField] private ManualPushButton button;
     private UnityEvent<Camera> _activateMyCamera;
     
     private void Start()
     {
-        button.onClick.AddListener(Activate);
+        button.trigger.AddListener(Activate);
         _activateMyCamera = new UnityEvent<Camera>();
         print(SwitchCamera.Instance);
         _activateMyCamera.AddListener(SwitchCamera.Instance.ChangeCamera);
