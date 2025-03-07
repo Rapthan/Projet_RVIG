@@ -39,4 +39,9 @@ public class BatteryManager : MonoBehaviour
     {
         _isConsumingBattery = false;
     }
+
+    public void AddBattery(float refill)
+    {
+        batteryLeft = Mathf.Min(batteryLeft + refill, maxBattery);
+    }
 }
