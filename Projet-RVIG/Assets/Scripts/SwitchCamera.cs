@@ -1,15 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class SwitchCamera : MonoBehaviour
 {
     /*[SerializeField] private Button button;
     [SerializeField] private List<Camera> cameras;
     private int _currentCamNbr;*/
-    
+
     [SerializeField] private GameObject display;
     private Camera _currentCam;
     public static SwitchCamera Instance;

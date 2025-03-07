@@ -6,12 +6,12 @@ public class CloseMenu : MonoBehaviour
     [SerializeField] private GameObject downMenu;
     [SerializeField] private GameObject upDisplay;
     private bool _displayActive;
-    [SerializeField] private Button button;
+    [SerializeField] private ManualPushButton button;
 
     private void Start()
     {
         _displayActive = upDisplay.activeSelf;
-        button.onClick.AddListener(SwitchState);
+        button.trigger.AddListener(SwitchState);
     }
 
     public void SwitchState()

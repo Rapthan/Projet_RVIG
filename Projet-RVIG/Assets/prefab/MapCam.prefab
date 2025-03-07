@@ -126,13 +126,14 @@ GameObject:
   - component: {fileID: 3830826563342310055}
   - component: {fileID: 1351396736738586698}
   - component: {fileID: 2617657429800926288}
+  - component: {fileID: 4013042419541537150}
   m_Layer: 0
   m_Name: TestButtonCloseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6845300161418316028
 Transform:
   m_ObjectHideFlags: 0
@@ -249,19 +250,7 @@ MonoBehaviour:
   m_AllowGazeAssistance: 0
   m_FirstHoverEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1351396736738586698}
-        m_TargetAssemblyTypeName: CloseMenu, Assembly-CSharp
-        m_MethodName: SwitchState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_LastHoverExited:
     m_PersistentCalls:
       m_Calls: []
@@ -318,7 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   downMenu: {fileID: 6338747552404910803}
   upDisplay: {fileID: 6758373650642642927}
-  button: {fileID: 0}
+  button: {fileID: 4013042419541537150}
 --- !u!114 &2617657429800926288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,6 +330,22 @@ MonoBehaviour:
       m_EnablePokeAngleThreshold: 1
       m_PokeAngleThreshold: 45
     m_Variable: {fileID: 0}
+--- !u!114 &4013042419541537150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487974909688259114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d85feec830aa88e4f9788ee180ffa0a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger:
+    m_PersistentCalls:
+      m_Calls: []
+  distanceToActivate: 1
 --- !u!1 &6338747552404910803
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,7 +755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5289182684458692540, guid: e5db301629853dd4a99835fa70099d79, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79, type: 3}
       propertyPath: m_Pivot.x
@@ -906,23 +911,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   downMenu: {fileID: 9060641912076733247}
   upDisplay: {fileID: 6758373650642642927}
-  button: {fileID: 5536655909164766278}
+  button: {fileID: 0}
 --- !u!224 &5536655909164766277 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5289182684458692541, guid: e5db301629853dd4a99835fa70099d79, type: 3}
   m_PrefabInstance: {fileID: 410061314688023544}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5536655909164766278 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5289182684458692542, guid: e5db301629853dd4a99835fa70099d79, type: 3}
-  m_PrefabInstance: {fileID: 410061314688023544}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5536655909164766276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1101867592351132990
 PrefabInstance:
   m_ObjectHideFlags: 0
