@@ -12,14 +12,12 @@ public class ManualPushButton : MonoBehaviour
     private XRBaseInteractable _interactable;
     private bool _isHovering;
     
-    private Vector3 _buttonPosition;
     private Transform _pokeAttachTransform;
     private bool _hasActivated;
     [SerializeField] private float distanceToActivate = 1;
     
     private void Awake()
     {
-        _buttonPosition = transform.position;
         _interactable = GetComponent<XRBaseInteractable>();
         _interactable.hoverEntered.AddListener(OnHover);
         _interactable.hoverExited.AddListener(OnExitHover);
@@ -30,15 +28,16 @@ public class ManualPushButton : MonoBehaviour
     {
         if (_isHovering)
         {
-            if (!_hasActivated && Vector3.Distance(_buttonPosition, _pokeAttachTransform.position) <= distanceToActivate)
+            if (!_hasActivated && Vector3.Distance(transform.position, _pokeAttachTransform.position) <= distanceToActivate)
             {
                 trigger.Invoke();
                 _hasActivated = true;
             }
-            else if (_hasActivated && Vector3.Distance(_buttonPosition, _pokeAttachTransform.position) > distanceToActivate)
-            {
-                _hasActivated = false;
-            }
+        }
+
+        if (_hasActivated && Vector3.Distance(transform.position, _pokeAttachTransform.position) > distanceToActivate)
+        {
+            _hasActivated = false;
         }
     }
 
@@ -58,7 +57,7 @@ public class ManualPushButton : MonoBehaviour
         if (eventArgs.interactorObject is XRPokeInteractor)
         {
             _isHovering = false;
-            if (_hasActivated) _hasActivated = false;
+            //if (_hasActivated) _hasActivated = false;
         }
     }
 }

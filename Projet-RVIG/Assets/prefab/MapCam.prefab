@@ -219,7 +219,7 @@ MonoBehaviour:
   trigger:
     m_PersistentCalls:
       m_Calls: []
-  distanceToActivate: 0.8
+  distanceToActivate: 0
 --- !u!114 &1085572860319683591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,7 +516,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  distanceToActivate: 0.8
+  distanceToActivate: 0
 --- !u!1 &680229830106723463
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,7 +736,7 @@ MonoBehaviour:
   trigger:
     m_PersistentCalls:
       m_Calls: []
-  distanceToActivate: 0.8
+  distanceToActivate: 0
 --- !u!114 &6422059882353018830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1194,7 +1194,7 @@ MonoBehaviour:
   trigger:
     m_PersistentCalls:
       m_Calls: []
-  distanceToActivate: 0.8
+  distanceToActivate: 0
 --- !u!1 &6338747552404910803
 GameObject:
   m_ObjectHideFlags: 0

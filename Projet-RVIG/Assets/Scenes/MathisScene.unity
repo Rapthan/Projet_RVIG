@@ -3391,7 +3391,7 @@ PrefabInstance:
       objectReference: {fileID: 1830109547}
     - target: {fileID: 1821029804230828651, guid: 08aa7b4b8ecb74544a3806a7ea83849b, type: 3}
       propertyPath: distanceToActivate
-      value: 1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 3830826563342310055, guid: 08aa7b4b8ecb74544a3806a7ea83849b, type: 3}
       propertyPath: m_InteractionManager
@@ -3399,11 +3399,11 @@ PrefabInstance:
       objectReference: {fileID: 145221078}
     - target: {fileID: 3945339759676569360, guid: 08aa7b4b8ecb74544a3806a7ea83849b, type: 3}
       propertyPath: distanceToActivate
-      value: 1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4013042419541537150, guid: 08aa7b4b8ecb74544a3806a7ea83849b, type: 3}
       propertyPath: distanceToActivate
-      value: 1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4289159312223039710, guid: 08aa7b4b8ecb74544a3806a7ea83849b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3447,7 +3447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5515421902646223417, guid: 08aa7b4b8ecb74544a3806a7ea83849b, type: 3}
       propertyPath: distanceToActivate
-      value: 1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6422059882353018830, guid: 08aa7b4b8ecb74544a3806a7ea83849b, type: 3}
       propertyPath: associatedCamera

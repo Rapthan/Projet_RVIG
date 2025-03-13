@@ -17,12 +17,14 @@ public class BatteryManager : MonoBehaviour
 
     private void Awake()
     {
+        //print("aa");
         Instance = this;
         batteryLeft = maxBattery;
     }
 
     private void Update()
     {
+        //print(_isConsumingBattery);
         if (_isConsumingBattery)
         {
             batteryLeft -= Time.deltaTime;
