@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8213486599825303894}
   - component: {fileID: 3757888459595279267}
   - component: {fileID: 4868297931038061586}
+  - component: {fileID: 3748635961351352711}
   m_Layer: 0
   m_Name: lever
   m_TagString: Untagged
@@ -287,8 +288,8 @@ HingeJoint:
   m_ExtendedLimits: 0
   m_UseAcceleration: 0
   m_Limits:
-    min: 0.46604234
-    max: 55.08543
+    min: 0
+    max: 61
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -298,6 +299,33 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &3748635961351352711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130538735693717886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f15a3b797e66a4792d41fc7d96234e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leverActivated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 6e99b3e7bc836f84da8e5640b2452535, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5327975154657150402
 GameObject:
   m_ObjectHideFlags: 0

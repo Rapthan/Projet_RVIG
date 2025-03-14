@@ -4,22 +4,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(HingeJoint))]
 public class Lever : MonoBehaviour
 {
-   private bool _state;
-   
-   private void OnTriggerEnter(Collider other)
+   private Rigidbody _rigidbody;
+   private HingeJoint _hinge;
+   public UnityEvent leverActivated;
+
+   private void Awake()
    {
-      _state = true;
+      _hinge = GetComponent<HingeJoint>();
+      _rigidbody = GetComponent<Rigidbody>();
+      leverActivated = new UnityEvent();
+      
    }
 
-   private void OnTriggerExit(Collider other)
+   private void Update()
    {
-      _state = false;
-   }
-
-   public bool GetState()
-   {
-      return _state;
+      if (_hinge.angle >=60)
+      {
+         _rigidbody.freezeRotation = true;
+         leverActivated.Invoke();
+      }
    }
 }
