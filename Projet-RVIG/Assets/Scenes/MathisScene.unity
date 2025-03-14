@@ -3449,6 +3449,14 @@ PrefabInstance:
       propertyPath: distanceToActivate
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 5854118347102651256, guid: 08aa7b4b8ecb74544a3806a7ea83849b, type: 3}
+      propertyPath: maxBattery
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057891756347552743, guid: 08aa7b4b8ecb74544a3806a7ea83849b, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6422059882353018830, guid: 08aa7b4b8ecb74544a3806a7ea83849b, type: 3}
       propertyPath: associatedCamera
       value: 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BatteryManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class BatteryManager : MonoBehaviour
     private bool _isConsumingBattery;
     public float batteryLeft;
     [SerializeField] private float maxBattery;
+    public UnityEvent batteryEmptied;
+    public UnityEvent batteryUnemptied;
 
     [SerializeField] private TextMeshProUGUI debugText;
 
@@ -20,6 +23,9 @@ public class BatteryManager : MonoBehaviour
         //print("aa");
         Instance = this;
         batteryLeft = maxBattery;
+
+        batteryEmptied = new UnityEvent();
+        batteryUnemptied = new UnityEvent();
     }
 
     private void Update()
@@ -29,6 +35,11 @@ public class BatteryManager : MonoBehaviour
         {
             batteryLeft -= Time.deltaTime;
             if (debugText) debugText.text = batteryLeft.ToString(CultureInfo.InvariantCulture);
+            if (batteryLeft <= 0)
+            {
+                _isConsumingBattery = false;
+                batteryEmptied.Invoke();
+            }
         }
     }
 
@@ -44,6 +55,8 @@ public class BatteryManager : MonoBehaviour
 
     public void AddBattery(float refill)
     {
+        if (batteryLeft <= 0) batteryUnemptied.Invoke();
+        
         batteryLeft = Mathf.Min(batteryLeft + refill, maxBattery);
     }
 }
