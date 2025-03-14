@@ -17,6 +17,7 @@ public class SwitchCamera : MonoBehaviour
     private BatteryManager _batteryManager;
 
     private bool _batteryBlocked;
+    private bool _sabotaged;
     
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class SwitchCamera : MonoBehaviour
         _currentCamNbr = 0;*/
 
         _batteryBlocked = false;
+        _sabotaged = false;
     }
 
     private void Start()
@@ -38,11 +40,14 @@ public class SwitchCamera : MonoBehaviour
         _batteryManager = BatteryManager.Instance;
         _batteryManager.batteryEmptied.AddListener(OnBatteryBlocked);
         _batteryManager.batteryUnemptied.AddListener(OnBatteryUnblocked);
+        
+        Sabotage.startSabotaging.AddListener(OnSabotaged);
+        Sabotage.endSabotaging.AddListener(OnUnsabotaged);
     }
 
     public void ChangeCamera(Camera newCamera)
     {
-        if (_batteryBlocked) return;
+        if (_batteryBlocked || _sabotaged) return;
         
         if (!display.activeSelf) display.SetActive(true);
         if (_currentCam) _currentCam.gameObject.SetActive(false);
@@ -59,14 +64,15 @@ public class SwitchCamera : MonoBehaviour
         _batteryManager.OnDisactivation();
     }
 
-    public void Sabotaged()
+    public void OnSabotaged()
     {
-        
+        display.SetActive(false);//ou afficher qu'il y a un sabotage
+        _sabotaged = true;
     }
 
-    public void Unsabotaged()
+    public void OnUnsabotaged()
     {
-        
+        _sabotaged = false;
     }
 
     private void OnBatteryBlocked()

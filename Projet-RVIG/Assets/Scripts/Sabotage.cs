@@ -1,25 +1,56 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
-public abstract class Sabotage : MonoBehaviour
+public class Sabotage : MonoBehaviour
 {
-    private SwitchCamera _switchCamera;
-    
-    private void Start()
+    public static UnityEvent startSabotaging;
+    public static UnityEvent endSabotaging;
+    [SerializeField] private float minimalTimeBeforeSabotage;
+    [SerializeField] private float maximalTimeBeforeSabotage;
+    private IEnumerator _onGoingCoroutine;
+
+    private void Awake()
     {
-        _switchCamera = SwitchCamera.Instance;
+        if (startSabotaging == null) startSabotaging = new UnityEvent();
+        if (endSabotaging == null) endSabotaging = new UnityEvent();
+        
+        startSabotaging.AddListener(() =>
+        {
+            if (_onGoingCoroutine != null)
+            {
+                StopCoroutine(_onGoingCoroutine);
+                _onGoingCoroutine = null;
+            }
+        });
+
+        StartingCorouting();
     }
 
-    protected void Activation()
+    public void StartingCorouting()
     {
-        _switchCamera.Sabotaged();
+        float timer = Random.Range(minimalTimeBeforeSabotage, maximalTimeBeforeSabotage);
+        _onGoingCoroutine = TimeBeforeActivate(timer);
+        StartCoroutine(_onGoingCoroutine);
+    }
+
+    private void Activation()
+    {
+        startSabotaging.Invoke();
     }
     
-    protected void Disactivation()
+    public void Disactivation()
     {
-        _switchCamera.Unsabotaged();
+        //à appeler par une classe sur l'objet implémentant la tache à faire pour annuler le sabotage
+        endSabotaging.Invoke();
+        StartingCorouting();
+    }
+
+    private IEnumerator TimeBeforeActivate(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        _onGoingCoroutine = null;
+        Activation();
     }
 }

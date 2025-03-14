@@ -12,6 +12,7 @@ public abstract class Task : MonoBehaviour
 
     private void Start()
     {
+        //à appeler si l'implémentation héritée utilise un start
         TaskManager.Instance.AddTask(this);
     }
 
