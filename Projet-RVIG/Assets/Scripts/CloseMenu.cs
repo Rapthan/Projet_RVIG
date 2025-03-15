@@ -6,12 +6,15 @@ public class CloseMenu : MonoBehaviour
     [SerializeField] private GameObject downMenu;
     [SerializeField] private GameObject upDisplay;
     private bool _displayActive;
-    [SerializeField] private Button button;
+    [SerializeField] private ManualPushButton button;
+
+    private BatteryManager _batteryManager;
 
     private void Start()
     {
+        _batteryManager = BatteryManager.Instance;
         _displayActive = upDisplay.activeSelf;
-        button.onClick.AddListener(SwitchState);
+        button.trigger.AddListener(SwitchState);
     }
 
     public void SwitchState()
@@ -21,11 +24,16 @@ public class CloseMenu : MonoBehaviour
             _displayActive = upDisplay.activeSelf;
             upDisplay.SetActive(false);
             downMenu.SetActive(false);
+            _batteryManager.OnDisactivation();
         }
         else
         {
             downMenu.SetActive(true);
-            upDisplay.SetActive(_displayActive);
+            if (_displayActive)
+            {
+                upDisplay.SetActive(true);
+                _batteryManager.OnActivation();
+            }
         }
     }
 }
