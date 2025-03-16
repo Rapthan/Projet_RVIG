@@ -1,39 +1,22 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Linq;
 
 public class ValidateObjectPlacement : MonoBehaviour
 {
-    [SerializeField] private GameObject[] objectsToCheck; // Les 6 objets à vérifier
-    [SerializeField] private GameObject[] lot1Cubes; // 4 cubes qui forment le premier lot (vert)
-    [SerializeField] private GameObject[] lot2Cubes; // 4 cubes qui forment le deuxième lot (jaune)
-    [SerializeField] private Button checkButton; // Bouton pour lancer la vérification
+    [SerializeField] private GameObject[] greenObjects;
+    [SerializeField] private GameObject[] yellowObjects;
 
-    private Material greenMaterial;
-    private Material yellowMaterial;
+    [SerializeField] private Collider lot1Collider;  // Zone pour les objets jaunes
+    [SerializeField] private Collider lot2Collider;  // Zone pour les objets verts
+
+    [SerializeField] private GameObject validationObject;
 
     void Start()
     {
-        // Récupérer automatiquement les matériaux des lots à partir des cubes
-        if (lot1Cubes.Length > 0) 
-            greenMaterial = lot1Cubes[0].GetComponent<Renderer>().sharedMaterial;
-        
-        if (lot2Cubes.Length > 0) 
-            yellowMaterial = lot2Cubes[0].GetComponent<Renderer>().sharedMaterial;
-
-        // Vérifier si le bouton est assigné et lier l'événement
-        if (checkButton == null)
+        UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>();
+        if (interactable != null)
         {
-            checkButton = FindObjectOfType<Button>(); // Trouve un bouton dans la scène
-        }
-
-        if (checkButton != null)
-        {
-            checkButton.onClick.AddListener(CheckObjectsPlacement);
-        }
-        else
-        {
-            Debug.LogError("Aucun bouton trouvé dans la scène !");
+            interactable.selectEntered.AddListener(_ => CheckObjectsPlacement());
         }
     }
 
@@ -41,52 +24,42 @@ public class ValidateObjectPlacement : MonoBehaviour
     {
         bool allCorrect = true;
 
-        foreach (GameObject obj in objectsToCheck)
+        // Vérifier que tous les objets verts sont dans la bonne zone (lot2)
+        foreach (GameObject obj in greenObjects)
         {
-            Renderer objRenderer = obj.GetComponent<Renderer>();
-            if (objRenderer == null) continue;
-
-            Material objMaterial = objRenderer.sharedMaterial;
-
-            // Vérifier si l'objet appartient au bon lot
-            if (objMaterial == greenMaterial)
+            if (!IsInsideZone(obj, lot1Collider))
             {
-                if (!IsInsideLot(obj, lot1Cubes))
-                {
-                    Debug.Log($"{obj.name} (VERT) est mal placé !");
-                    allCorrect = false;
-                }
-            }
-            else if (objMaterial == yellowMaterial)
-            {
-                if (!IsInsideLot(obj, lot2Cubes))
-                {
-                    Debug.Log($"{obj.name} (JAUNE) est mal placé !");
-                    allCorrect = false;
-                }
+                allCorrect = false;
             }
         }
 
-        if (allCorrect)
+        // Vérifier que tous les objets jaunes sont dans la bonne zone (lot1)
+        foreach (GameObject obj in yellowObjects)
         {
-            Debug.Log("Tous les objets sont bien placés !");
+            if (!IsInsideZone(obj, lot2Collider))
+            {
+                allCorrect = false;
+            }
         }
-        else
+
+        ChangeValidationObjectColor(allCorrect);
+    }
+
+    void ChangeValidationObjectColor(bool isValid)
+    {
+        if (validationObject != null)
         {
-            Debug.Log("Certains objets sont mal placés !");
+            Renderer renderer = validationObject.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                renderer.material.color = isValid ? Color.green : Color.red;
+            }
         }
     }
 
-    bool IsInsideLot(GameObject obj, GameObject[] lotCubes)
+    bool IsInsideZone(GameObject obj, Collider zoneCollider)
     {
-        // Déterminer les bornes min et max du lot
-        Vector3 minBounds = lotCubes.Select(c => c.transform.position).Aggregate(Vector3.Min);
-        Vector3 maxBounds = lotCubes.Select(c => c.transform.position).Aggregate(Vector3.Max);
-
-        // Vérifier si l'objet est dans les limites du lot
-        Vector3 objPos = obj.transform.position;
-        return (objPos.x >= minBounds.x && objPos.x <= maxBounds.x) &&
-               (objPos.y >= minBounds.y && objPos.y <= maxBounds.y) &&
-               (objPos.z >= minBounds.z && objPos.z <= maxBounds.z);
+        if (zoneCollider == null) return false;
+        return zoneCollider.bounds.Contains(obj.transform.position);
     }
 }

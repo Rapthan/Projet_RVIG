@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class CheckRotation : MonoBehaviour
 {
-    public GameObject cube;    // Référence vers le cube
-    public GameObject contour; // Référence vers le contour
-    private Renderer cubeRenderer; // Pour changer la couleur du cube
-    private Button button; // Référence au bouton
+    public GameObject cube;
+    public GameObject contour;
+    private Renderer cubeRenderer;
 
     void Start()
     {
@@ -14,17 +13,6 @@ public class CheckRotation : MonoBehaviour
         {
             Debug.LogError("Cube ou Contour non assigné !");
             return;
-        }
-
-        // Récupérer le composant Button (si ce script est attaché à un bouton)
-        button = GetComponent<Button>();
-        if (button != null)
-        {
-            button.onClick.AddListener(CheckRotationMatch);
-        }
-        else
-        {
-            Debug.LogError("Aucun bouton trouvé sur cet objet !");
         }
 
         // Récupérer le Renderer du cube
@@ -35,13 +23,16 @@ public class CheckRotation : MonoBehaviour
             return;
         }
 
-        // Initialiser la couleur du cube
-        cubeRenderer.material.color = Color.red;
-    }
-
-    void Update()
-    {
-        CheckRotationMatch();
+        // Essayer de récupérer le XR Interactable et ajouter l'événement
+        UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>();
+        if (interactable != null)
+        {
+            interactable.selectEntered.AddListener(_ => CheckRotationMatch());
+        }
+        else
+        {
+            Debug.LogError("Aucun XR Interactable trouvé !");
+        }
     }
 
     public void CheckRotationMatch()
@@ -51,19 +42,15 @@ public class CheckRotation : MonoBehaviour
             return;
         }
 
-        // Récupère l'angle de rotation sur l'axe Z des deux objets
         float cubeRotationZ = cube.transform.eulerAngles.z;
         float contourRotationZ = contour.transform.eulerAngles.z;
-
-        // Calculer la différence absolue entre les angles
         float angleDifference = Mathf.Abs(Mathf.DeltaAngle(cubeRotationZ, contourRotationZ));
 
-        // Vérifie si la différence est inférieure à 10°
         if (angleDifference < 10f)
         {
             if (cubeRenderer.material.color != Color.green)
             {
-                Debug.Log("✅ Le cube et le contour ont une rotation similaire sur Z.");
+                Debug.Log("✅ Aligné !");
                 cubeRenderer.material.color = Color.green;
             }
         }
@@ -71,7 +58,7 @@ public class CheckRotation : MonoBehaviour
         {
             if (cubeRenderer.material.color != Color.red)
             {
-                Debug.Log("❌ Le cube et le contour ont une différence de rotation trop grande sur Z.");
+                Debug.Log("❌ Pas aligné !");
                 cubeRenderer.material.color = Color.red;
             }
         }
