@@ -229,6 +229,10 @@ PrefabInstance:
       value: XR Origin (XR Rig) Perso
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -403,7 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Mediator: {fileID: 600552981200291714}
   m_TransformationPriority: 0
-  m_MoveSpeed: 1.5
+  m_MoveSpeed: 5
   m_EnableStrafe: 1
   m_EnableFly: 0
   m_UseGravity: 1
