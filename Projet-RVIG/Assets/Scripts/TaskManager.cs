@@ -6,7 +6,6 @@ using UnityEngine;
 public class TaskManager : MonoBehaviour
 {
     public static TaskManager Instance;
-    private List<Task> _tasks;
 
     [SerializeField] private Transform player;
     
@@ -16,7 +15,6 @@ public class TaskManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        _tasks = new List<Task>();
         _arrows = new Dictionary<Task, Transform>();
     }
 
@@ -32,8 +30,17 @@ public class TaskManager : MonoBehaviour
 
     public void AddTask(Task task)
     {
-        _tasks.Add(task);
         GameObject arrow = Instantiate(arrowTowardTask, player);
         _arrows.Add(task, arrow.transform);
+    }
+
+    public List<Vector3> TasksPositions()
+    {
+        List<Vector3> positions = new List<Vector3>();
+        foreach (var arrowTask in _arrows)
+        {
+            positions.Add(arrowTask.Key.transform.position);
+        }
+        return positions;
     }
 }
