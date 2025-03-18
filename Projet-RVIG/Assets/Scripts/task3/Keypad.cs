@@ -6,13 +6,20 @@ public class Keypad : MonoBehaviour
 {
     public TMP_Text screenText;
     private string enteredCode = "";
+    private Color defaultColor;
 
     void Start()
     {
-        foreach (Button btn in GetComponentsInChildren<Button>())
+        // Sauvegarde de la couleur de base du texte
+        defaultColor = screenText.color;
+
+        UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable[] interactables = GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>();
+        foreach (var interactable in interactables)
         {
-            btn.onClick.AddListener(() => HandleButtonPress(btn.GetComponentInChildren<TMP_Text>().text));
-            Debug.Log("button setup!");
+            if (interactable != null)
+            {
+                interactable.selectEntered.AddListener(_ => HandleButtonPress(interactable.GetComponentInChildren<TMP_Text>().text));
+            }
         }
     }
 
@@ -38,6 +45,7 @@ public class Keypad : MonoBehaviour
         {
             enteredCode += number;
             screenText.text = enteredCode;
+            screenText.color = defaultColor; // Remettre la couleur par défaut
         }
     }
 
@@ -47,6 +55,7 @@ public class Keypad : MonoBehaviour
         {
             enteredCode = enteredCode.Substring(0, enteredCode.Length - 1);
             screenText.text = enteredCode;
+            screenText.color = defaultColor; // Remettre la couleur par défaut
         }
     }
 
@@ -55,18 +64,26 @@ public class Keypad : MonoBehaviour
         if (enteredCode == "176528") 
         {
             Debug.Log("Code correct !");
-            ClearCode(); 
+            screenText.color = Color.green; // Change le texte en vert
+            ClearCodeDelayed(); // Efface après un délai
         }
         else
         {
             Debug.Log("Code incorrect !");
-            ClearCode(); 
+            screenText.color = Color.red; // Change le texte en rouge
+            ClearCodeDelayed(); // Efface après un délai
         }
+    }
+
+    private void ClearCodeDelayed()
+    {
+        Invoke("ClearCode", 1.5f); // Efface après 1.5 secondes
     }
 
     public void ClearCode()
     {
         enteredCode = "";
         screenText.text = ""; 
+        screenText.color = defaultColor; // Remet la couleur de base
     }
 }
