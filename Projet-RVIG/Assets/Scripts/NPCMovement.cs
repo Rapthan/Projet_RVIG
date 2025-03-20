@@ -31,6 +31,7 @@ public class NPCMovement : MonoBehaviour
     {
         if (agent.remainingDistance <= agent.stoppingDistance && !hasReachedDestination)
         {
+            print(gameObject);//bug : dès le début les npc ont finis leur tache avant d'être rerépartis, et donc il peut avoir des meurtres
             hasReachedDestination = true;
             taskCompleted.Invoke();
         }
@@ -38,6 +39,7 @@ public class NPCMovement : MonoBehaviour
 
     public void Die()
     {
+        print("I died rip : " + gameObject);
         if (hasReachedDestination) npcManager.TaskCancelled();
         npcManager.RemoveNPCMovement(this);
         Destroy(gameObject); //à remplacer par le spawn d'un cadavre
