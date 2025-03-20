@@ -1,16 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class NPCManager : MonoBehaviour
 {
     public static NPCManager Instance;
+
+    [SerializeField] private NPCMovement npcPrefab;
+    [SerializeField] private Imposter imposterPrefab;
+    [SerializeField] [Range(3,10)] private int numberOfNPC;
+    [SerializeField] [Range(1,3)] private int numberOfImposter; //nombre d'imposteur parmis les NPC
+    [SerializeField] private float radiusSpawn;
     private List<NPCMovement> npcMovements;
+    private List<Imposter> _imposters;
+    
     [SerializeField] private List<Vector3> taskPositions;
     [SerializeField] private float timeBeforeDispatch = 2f;
 
     private int tasksCompletedNumber;
+    public UnityEvent dispatched;
 
     private void Awake()
     {
@@ -23,10 +33,12 @@ public class NPCManager : MonoBehaviour
         
         npcMovements = new List<NPCMovement>();
         tasksCompletedNumber = 0;
+        dispatched = new UnityEvent();
     }
 
     private IEnumerator Start()
     {
+        SpawnNPC();
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         //taskPositions = TaskManager.Instance.TasksPositions();
@@ -49,6 +61,41 @@ public class NPCManager : MonoBehaviour
         NPCMovement newNPC = nonSelectedNPCs[Random.Range(0, nonSelectedNPCs.Count)];
         nonSelectedNPCs.Remove(newNPC);
         return newNPC;
+    }
+
+    private void SpawnNPC()
+    {
+        List<int> positionIndexes = new List<int>();
+        for (int i = 0; i < numberOfNPC; i++)
+        {
+            positionIndexes.Add(i);
+        }
+
+        for (int i = 0; i < numberOfNPC - numberOfImposter; i++)
+        {
+            int positionIndex = positionIndexes[Random.Range(0, positionIndexes.Count)];
+            positionIndexes.Remove(positionIndex);
+
+            Vector3 pos = transform.position + new Vector3(radiusSpawn * Mathf.Cos(2 * positionIndex * Mathf.PI / numberOfNPC), 1.25f,
+                radiusSpawn * Mathf.Sin(2 * positionIndex * Mathf.PI / numberOfNPC));
+            
+            Instantiate(npcPrefab,
+                pos,
+                Quaternion.identity);
+        }
+        
+        for (int i = 0; i < numberOfImposter; i++)
+        {
+            int positionIndex = positionIndexes[Random.Range(0, positionIndexes.Count)];
+            positionIndexes.Remove(positionIndex);
+
+            Vector3 pos = transform.position + new Vector3(radiusSpawn * Mathf.Cos(2 * positionIndex * Mathf.PI / numberOfNPC), 1.25f,
+                radiusSpawn * Mathf.Sin(2 * positionIndex * Mathf.PI / numberOfNPC));
+
+            Instantiate(imposterPrefab,
+                pos,
+                Quaternion.identity).timeToKill = timeBeforeDispatch;
+        }
     }
 
     private IEnumerator Dispatch()
@@ -77,11 +124,14 @@ public class NPCManager : MonoBehaviour
                 NPC.hasReachedDestination = false;
             }
         }
+        
+        dispatched.Invoke();
     }
 
     public void TaskCompleted()
     {
         tasksCompletedNumber++;
+        print(tasksCompletedNumber);
         if (tasksCompletedNumber >= npcMovements.Count)
         {
             StartCoroutine(Dispatch());
