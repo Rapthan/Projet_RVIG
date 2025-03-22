@@ -41,8 +41,8 @@ public class SwitchCamera : MonoBehaviour
         _batteryManager.batteryEmptied.AddListener(OnBatteryBlocked);
         _batteryManager.batteryUnemptied.AddListener(OnBatteryUnblocked);
         
-        Sabotage.startSabotaging.AddListener(OnSabotaged);
-        Sabotage.endSabotaging.AddListener(OnUnsabotaged);
+        //Sabotage.startSabotaging.AddListener(OnSabotaged);
+        //Sabotage.endSabotaging.AddListener(OnUnsabotaged);
     }
 
     public void ChangeCamera(Camera newCamera)

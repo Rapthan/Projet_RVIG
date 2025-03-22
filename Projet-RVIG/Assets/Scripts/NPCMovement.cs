@@ -12,7 +12,6 @@ public class NPCMovement : MonoBehaviour
     private NPCManager npcManager;
 
     public bool hasReachedDestination;
-    private bool _waitForFirstFrame;
 
     private void Awake()
     {
@@ -31,7 +30,7 @@ public class NPCMovement : MonoBehaviour
     {
         if (agent.remainingDistance <= agent.stoppingDistance && !hasReachedDestination)
         {
-            print(gameObject);//bug : dès le début les npc ont finis leur tache avant d'être rerépartis, et donc il peut avoir des meurtres
+            //print(gameObject + "; " + agent.destination + "; " + agent.remainingDistance);//bug : dès le début les npc ont finis leur tache avant d'être rerépartis, et donc il peut avoir des meurtres
             hasReachedDestination = true;
             taskCompleted.Invoke();
         }

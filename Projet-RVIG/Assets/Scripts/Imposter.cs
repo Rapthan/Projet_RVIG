@@ -9,6 +9,7 @@ public class Imposter : MonoBehaviour
     [SerializeField] private Renderer renderer;
     public float timeToKill; //initialisé par le npcManager au spawn
     private bool _canKill;
+    private bool _waitForFirstDispatch;
 
     private void Awake()
     {
@@ -23,10 +24,15 @@ public class Imposter : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log(renderer.isVisible);
         if (_canKill && !renderer.isVisible && other.TryGetComponent(out NPCMovement npc)) //on pourra rajouter plus timer, comme un cd sur le kill ou un delai avant de tuer si vu sur caméra
         {
-            npc.Die();
             _canKill = false; //ne peut pas tuer 2 fois en 1 point
+            if (!_waitForFirstDispatch) {
+                _waitForFirstDispatch = true;
+                return;
+            }
+            npc.Die();
         }
     }
 }

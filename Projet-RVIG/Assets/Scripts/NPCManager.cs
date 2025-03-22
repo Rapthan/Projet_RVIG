@@ -131,7 +131,7 @@ public class NPCManager : MonoBehaviour
     public void TaskCompleted()
     {
         tasksCompletedNumber++;
-        print(tasksCompletedNumber);
+        //print(tasksCompletedNumber);
         if (tasksCompletedNumber >= npcMovements.Count)
         {
             StartCoroutine(Dispatch());
