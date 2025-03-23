@@ -43,12 +43,13 @@ public class TaskManager : MonoBehaviour
         _arrows.Remove(task);
     }
 
-    public List<Vector3> TasksPositions()
+    public Dictionary<Task, Vector3> TasksPositions()
     {
-        List<Vector3> positions = new List<Vector3>();
+        Dictionary<Task, Vector3> positions = new Dictionary<Task, Vector3>();
         foreach (var arrowTask in _arrows)
         {
-            positions.Add(arrowTask.Key.transform.position);
+            Task task = arrowTask.Key;
+            positions.Add(task, task.transform.position);
         }
         return positions;
     }

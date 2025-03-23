@@ -59,9 +59,16 @@ public class SwitchCamera : MonoBehaviour
 
     public void CloseCameras()
     {
-        display.SetActive(false);
-        
-        _batteryManager.OnDisactivation();
+        if (display.activeSelf)
+        {
+            display.SetActive(false);
+            _batteryManager.OnDisactivation();
+        }
+        else
+        {
+            display.SetActive(true);
+            if (_currentCam) _batteryManager.OnActivation();
+        }
     }
 
     public void OnSabotaged()
