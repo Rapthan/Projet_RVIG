@@ -31,7 +31,8 @@ public class TaskManager : MonoBehaviour
 
     public void AddTask(Task task)
     {
-        GameObject arrow = Instantiate(arrowTowardTask, 0.2f * Vector3.up, quaternion.identity, player);
+        GameObject arrow = Instantiate(arrowTowardTask, Vector3.zero, quaternion.identity, player);
+        arrow.transform.localPosition = 0.2f * Vector3.up;
         _arrows.Add(task, arrow.transform);
         task.onComplete.AddListener(() => RemoveTask(task));
     }

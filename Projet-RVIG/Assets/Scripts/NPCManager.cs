@@ -47,6 +47,16 @@ public class NPCManager : MonoBehaviour
         StartCoroutine(Dispatch());
     }
 
+    public void SetNumberOfNPC(int n)
+    {
+        numberOfNPC = n;
+    }
+
+    public void SetNumberOfImposter(int n)
+    {
+        numberOfImposter = n;
+    }
+
     public void AddNPCMovement(NPCMovement npcMovement)
     {
         npcMovements.Add(npcMovement);

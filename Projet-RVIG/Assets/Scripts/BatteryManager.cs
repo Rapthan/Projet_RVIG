@@ -34,7 +34,7 @@ public class BatteryManager : MonoBehaviour
         if (_isConsumingBattery)
         {
             batteryLeft -= Time.deltaTime;
-            if (debugText) debugText.text = batteryLeft.ToString(CultureInfo.InvariantCulture);
+            if (debugText) debugText.text = "battery left : " + Mathf.Max(batteryLeft, 0);
             if (batteryLeft <= 0)
             {
                 _isConsumingBattery = false;
