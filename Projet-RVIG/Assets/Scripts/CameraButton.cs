@@ -12,7 +12,7 @@ public class CameraButton : MonoBehaviour
     {
         button.trigger.AddListener(Activate);
         _activateMyCamera = new UnityEvent<Camera>();
-        print(SwitchCamera.Instance);
+        //print(SwitchCamera.Instance);
         _activateMyCamera.AddListener(SwitchCamera.Instance.ChangeCamera);
     }
 

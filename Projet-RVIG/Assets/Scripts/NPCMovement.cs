@@ -10,6 +10,8 @@ public class NPCMovement : MonoBehaviour
     public UnityEvent taskCompleted;
     public NavMeshAgent agent;
     private NPCManager npcManager;
+    public Renderer renderer;//à transmettre en serialisant
+    [SerializeField] private MeshRenderer corpsePrefab;
 
     public bool hasReachedDestination;
 
@@ -24,6 +26,7 @@ public class NPCMovement : MonoBehaviour
     {
         npcManager = NPCManager.Instance;
         npcManager.AddNPCMovement(this);
+        if (renderer != null) VoteMenu.Instance.AddNpc(this);
     }
     
     private void Update()
@@ -38,9 +41,10 @@ public class NPCMovement : MonoBehaviour
 
     public void Die()
     {
-        print("I died rip : " + gameObject);
+        VoteMenu.Instance.RemoveNpc(this);
         if (hasReachedDestination) npcManager.TaskCancelled();
         npcManager.RemoveNPCMovement(this);
-        Destroy(gameObject); //à remplacer par le spawn d'un cadavre
+        Instantiate(corpsePrefab, transform.position - 0.5f * Vector3.up, corpsePrefab.transform.rotation).material.color = renderer.material.color;
+        Destroy(gameObject);
     }
 }

@@ -73,6 +73,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   agent: {fileID: 0}
+  renderer: {fileID: 741079236103117919}
+  corpsePrefab: {fileID: 1939727542988495176, guid: 6117ff2a764cc80428e61527a3ee7ba1, type: 3}
   hasReachedDestination: 0
 --- !u!65 &960544029162510688
 BoxCollider:

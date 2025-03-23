@@ -48,12 +48,12 @@ public class CheckRotation : Task
         float contourRotationZ = contour.transform.eulerAngles.z;
         float angleDifference = Mathf.Abs(Mathf.DeltaAngle(cubeRotationZ, contourRotationZ));
 
-        print(angleDifference);
+        //print(angleDifference);
         if (angleDifference < 5f || Mathf.Abs(angleDifference - 90) < 5f || Mathf.Abs(angleDifference - 180) < 5f)
         {
             if (cubeRenderer.material.color != Color.green)
             {
-                Debug.Log("✅ Aligné !");
+                //Debug.Log("✅ Aligné !");
                 cubeRenderer.material.color = Color.green;
                 TaskComplete();
             }
@@ -62,7 +62,7 @@ public class CheckRotation : Task
         {
             if (cubeRenderer.material.color != Color.red)
             {
-                Debug.Log("❌ Pas aligné !");
+                //Debug.Log("❌ Pas aligné !");
                 cubeRenderer.material.color = Color.red;
             }
         }

@@ -18,6 +18,7 @@ public class NPCManager : MonoBehaviour
     
     [SerializeField] private List<Vector3> taskPositions;
     [SerializeField] private float timeBeforeDispatch = 2f;
+    [SerializeField] private List<Color> colors;
 
     private int tasksCompletedNumber;
     public UnityEvent dispatched;
@@ -32,6 +33,7 @@ public class NPCManager : MonoBehaviour
         else if (Instance != this) Destroy(this);
         
         npcMovements = new List<NPCMovement>();
+        _imposters = new List<Imposter>();
         tasksCompletedNumber = 0;
         dispatched = new UnityEvent();
     }
@@ -54,6 +56,16 @@ public class NPCManager : MonoBehaviour
     public void RemoveNPCMovement(NPCMovement npcMovement)
     {
         npcMovements.Remove(npcMovement);
+    }
+
+    public void AddImposter(Imposter imposter)
+    {
+        _imposters.Add(imposter);
+    }
+
+    public void RemoveImposter(Imposter imposter)
+    {
+        _imposters.Remove(imposter);
     }
 
     private NPCMovement SelectNewNPC(List<NPCMovement> nonSelectedNPCs)
@@ -81,7 +93,7 @@ public class NPCManager : MonoBehaviour
             
             Instantiate(npcPrefab,
                 pos,
-                Quaternion.identity);
+                Quaternion.identity).renderer.material.color = colors[positionIndex];
         }
         
         for (int i = 0; i < numberOfImposter; i++)
@@ -92,9 +104,7 @@ public class NPCManager : MonoBehaviour
             Vector3 pos = transform.position + new Vector3(radiusSpawn * Mathf.Cos(2 * positionIndex * Mathf.PI / numberOfNPC), 1.25f,
                 radiusSpawn * Mathf.Sin(2 * positionIndex * Mathf.PI / numberOfNPC));
 
-            Instantiate(imposterPrefab,
-                pos,
-                Quaternion.identity).timeToKill = timeBeforeDispatch;
+            Instantiate(imposterPrefab, pos, Quaternion.identity).renderer.material.color = colors[positionIndex];
         }
     }
 
