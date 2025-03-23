@@ -15440,7 +15440,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Choisir le nombre d'imposter
+  m_Text: Choisir le nombre d'imposteur
 --- !u!222 &1174576693
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24333,13 +24333,61 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 571904682422149808, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 571904682422149808, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 571904682422149808, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[0].m_LocomotionProvider
+      value: 
+      objectReference: {fileID: 1779314137}
+    - target: {fileID: 571904682422149808, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_LocomotionProvider
+      value: 
+      objectReference: {fileID: 1779314136}
+    - target: {fileID: 571904682422149808, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideDefaultParameters
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 571904682422149808, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_EaseInTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 571904682422149808, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_EaseOutTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 571904682422149808, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_ApertureSize
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 571904682422149808, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_VignetteColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 571904682422149808, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_FeatheringEffect
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 571904682422149808, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_VignetteColorBlend.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637017010616036313, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
+      propertyPath: m_MoveSpeed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4874291289524103156, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
       propertyPath: m_Name
       value: XR Origin (XR Rig) Perso
       objectReference: {fileID: 0}
     - target: {fileID: 4874291289524103159, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.492
+      value: -13.68
       objectReference: {fileID: 0}
     - target: {fileID: 4874291289524103159, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -24417,6 +24465,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1c500f2a52a5eb4a952658e1bf51e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1779314136 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3637017010616036313, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
+  m_PrefabInstance: {fileID: 1779314134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 626a4d6723d6ad24b9aebb811ad5a3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1779314137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 973709508262792654, guid: 70d98b775fe194b48bbbf4cbe413f9ee, type: 3}
+  m_PrefabInstance: {fileID: 1779314134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b29b6c6428c984a8a73ffc2d58063b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1785388430
@@ -24636,7 +24706,7 @@ PrefabInstance:
       objectReference: {fileID: 1779314135}
     - target: {fileID: 220354280557180393, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
       propertyPath: m_Text
-      value: Choisir le nombre de npc (imposter compris)
+      value: Choisir le nombre de npc (imposteur compris)
       objectReference: {fileID: 0}
     - target: {fileID: 664627566151370624, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -24956,7 +25026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5052753196441441083, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5052753196441441083, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -24964,7 +25034,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5052753196441441083, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5052753196441441083, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -24973,14 +25043,14 @@ PrefabInstance:
     - target: {fileID: 5052753196441441083, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1845673061}
+      objectReference: {fileID: 1779314136}
     - target: {fileID: 5052753196441441083, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StartGame
       objectReference: {fileID: 0}
     - target: {fileID: 5052753196441441083, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetNumberOfNPC
+      value: set_moveSpeed
       objectReference: {fileID: 0}
     - target: {fileID: 5052753196441441083, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -24988,7 +25058,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5052753196441441083, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: NPCManager, Assembly-CSharp
+      value: UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement.ContinuousMoveProvider,
+        Unity.XR.Interaction.Toolkit
       objectReference: {fileID: 0}
     - target: {fileID: 5052753196441441083, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -24997,6 +25068,10 @@ PrefabInstance:
     - target: {fileID: 5052753196441441083, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5052753196441441083, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5052753196441441083, guid: 9cd776e4a54f1af4b97bfd44896425f0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
