@@ -24,7 +24,7 @@ public class Imposter : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log(renderer.isVisible);
+        //Debug.Log(renderer.isVisible);
         if (_canKill && !renderer.isVisible && other.TryGetComponent(out NPCMovement npc)) //on pourra rajouter plus timer, comme un cd sur le kill ou un delai avant de tuer si vu sur caméra
         {
             _canKill = false; //ne peut pas tuer 2 fois en 1 point

@@ -7,12 +7,15 @@ using UnityEngine.Events;
 public abstract class Task : MonoBehaviour
 {
     [SerializeField] private float batteryRefill;
+    [SerializeField] private AudioSource audioSource;
+    public UnityEvent onComplete;
     private bool _alreadyActivated;
     public string taskName;
 
-    private void Start()
+    public void Start()
     {
         //à appeler si l'implémentation héritée utilise un start
+        onComplete = new UnityEvent();
         TaskManager.Instance.AddTask(this);
     }
 
@@ -20,6 +23,8 @@ public abstract class Task : MonoBehaviour
     {
         if (!_alreadyActivated)
         {
+            onComplete.Invoke();
+            audioSource.Play();
             BatteryManager.Instance.AddBattery(batteryRefill);
             _alreadyActivated = true;
         }

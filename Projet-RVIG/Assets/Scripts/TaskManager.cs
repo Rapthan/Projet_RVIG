@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class TaskManager : MonoBehaviour
@@ -24,14 +25,21 @@ public class TaskManager : MonoBehaviour
         foreach (var arrowTask in _arrows)
         {
             Transform arrow = arrowTask.Value;
-            arrow.LookAt(arrowTask.Key.transform);
+            arrow.LookAt(new Vector3(arrowTask.Key.transform.position.x, arrow.position.y, arrowTask.Key.transform.position.z));
         }
     }
 
     public void AddTask(Task task)
     {
-        GameObject arrow = Instantiate(arrowTowardTask, player);
+        GameObject arrow = Instantiate(arrowTowardTask, 0.2f * Vector3.up, quaternion.identity, player);
         _arrows.Add(task, arrow.transform);
+        task.onComplete.AddListener(() => RemoveTask(task));
+    }
+
+    private void RemoveTask(Task task)
+    {
+        Destroy(_arrows[task].gameObject);
+        _arrows.Remove(task);
     }
 
     public List<Vector3> TasksPositions()

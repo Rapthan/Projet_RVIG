@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class CheckRotation : MonoBehaviour
+public class CheckRotation : Task
 {
     public GameObject cube;
     public GameObject contour;
@@ -9,6 +9,8 @@ public class CheckRotation : MonoBehaviour
 
     void Start()
     {
+        base.Start();
+        
         if (cube == null || contour == null)
         {
             Debug.LogError("Cube ou Contour non assigné !");
@@ -46,12 +48,14 @@ public class CheckRotation : MonoBehaviour
         float contourRotationZ = contour.transform.eulerAngles.z;
         float angleDifference = Mathf.Abs(Mathf.DeltaAngle(cubeRotationZ, contourRotationZ));
 
-        if (angleDifference < 10f)
+        print(angleDifference);
+        if (angleDifference < 5f || Mathf.Abs(angleDifference - 90) < 5f || Mathf.Abs(angleDifference - 180) < 5f)
         {
             if (cubeRenderer.material.color != Color.green)
             {
                 Debug.Log("✅ Aligné !");
                 cubeRenderer.material.color = Color.green;
+                TaskComplete();
             }
         }
         else

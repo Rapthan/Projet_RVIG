@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Keypad : MonoBehaviour
+public class Keypad : Task
 {
     public TMP_Text screenText;
     private string enteredCode = "";
@@ -10,6 +10,8 @@ public class Keypad : MonoBehaviour
 
     void Start()
     {
+        base.Start();
+        
         // Sauvegarde de la couleur de base du texte
         defaultColor = screenText.color;
 
@@ -63,6 +65,7 @@ public class Keypad : MonoBehaviour
     {
         if (enteredCode == "176528") 
         {
+            TaskComplete();
             Debug.Log("Code correct !");
             screenText.color = Color.green; // Change le texte en vert
             ClearCodeDelayed(); // Efface après un délai

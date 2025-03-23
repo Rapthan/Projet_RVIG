@@ -5,6 +5,8 @@ public class RestrictMovementX : MonoBehaviour
     [SerializeField] private Transform minX; // Borne minimale sur X
     [SerializeField] private Transform maxX;  // Borne maximale sur X
 
+    [SerializeField] private Rigidbody rb;
+    
     private float fixedY;
     private float fixedZ;
 
@@ -25,5 +27,11 @@ public class RestrictMovementX : MonoBehaviour
 
         // Garde Y et Z fixes, permet seulement X de changer dans les bornes
         transform.position = new Vector3(x, fixedY, fixedZ);
+        //rb.velocity = Vector3.zero;
+    }
+
+    public void StopMomentum()
+    {
+        rb.velocity = Vector3.zero;
     }
 }

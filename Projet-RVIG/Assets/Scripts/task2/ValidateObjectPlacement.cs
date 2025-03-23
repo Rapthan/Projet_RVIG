@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Linq;
 
-public class ValidateObjectPlacement : MonoBehaviour
+public class ValidateObjectPlacement : Task
 {
     [SerializeField] private GameObject[] greenObjects;
     [SerializeField] private GameObject[] yellowObjects;
@@ -13,6 +13,8 @@ public class ValidateObjectPlacement : MonoBehaviour
 
     void Start()
     {
+        base.Start();
+        
         UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>();
         if (interactable != null)
         {
@@ -20,7 +22,7 @@ public class ValidateObjectPlacement : MonoBehaviour
         }
     }
 
-    void CheckObjectsPlacement()
+    public void CheckObjectsPlacement()
     {
         bool allCorrect = true;
 
@@ -50,9 +52,25 @@ public class ValidateObjectPlacement : MonoBehaviour
         if (validationObject != null)
         {
             Renderer renderer = validationObject.GetComponent<Renderer>();
-            if (renderer != null)
+            /*if (renderer != null)
             {
                 renderer.material.color = isValid ? Color.green : Color.red;
+            }*/
+
+            if (isValid)
+            {
+                if (renderer != null)
+                {
+                    renderer.material.color = Color.green;
+                }
+                TaskComplete();
+            }
+            else
+            {
+                if (renderer != null)
+                {
+                    renderer.material.color = Color.red;
+                }
             }
         }
     }
