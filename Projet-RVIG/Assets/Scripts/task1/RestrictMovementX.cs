@@ -32,6 +32,6 @@ public class RestrictMovementX : MonoBehaviour
 
     public void StopMomentum()
     {
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
     }
 }
